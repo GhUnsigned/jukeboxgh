@@ -61,7 +61,7 @@ public class SignInActivity extends Activity {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 			pDialog = new ProgressDialog(SignInActivity.this);
-			pDialog.setMessage("Registering..");
+			pDialog.setMessage("Signing In ...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(true);
 			pDialog.show();
@@ -96,7 +96,6 @@ public class SignInActivity extends Activity {
 					DatabaseHandler dbHandler = new DatabaseHandler(getApplicationContext());
 					
 					dbHandler.addUser(email, password);
-					
 					Intent i = new Intent(getApplicationContext(), WelcomeOneActivity.class);
 					
 					// Closing other views

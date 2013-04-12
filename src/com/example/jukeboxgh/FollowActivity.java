@@ -30,7 +30,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class FollowActivity extends Activity {
-	
+
+	private static final String TAG_SUCCESS = "success";
 
 	ArrayList<Artists_Items> artistsList;
 	
@@ -57,20 +58,58 @@ public class FollowActivity extends Activity {
 	}
 	
 	public void nextButtonClick (View view) {
-		
 		StringBuffer responseText = new StringBuffer();
+		
 		responseText.append("The following were selected...\n");
 		
 		ArrayList<Artists_Items> artistsItems = new ArrayList<Artists_Items>();
+		ArrayList<String> artistsArray = new ArrayList<String>();
+		
 		for(int i=0;i<artistsList.size();i++){
 			Artists_Items artist = artistsList.get(i);
+			int a=0;
 			if(artist.isChecked()){
+				artistsArray.add(a, String.valueOf(artist.getID()));				// Later to get the ID
+				a++;
+				
 				responseText.append("\n" + artist.getName());
 			}
+		}		
+		
+		UserFunctions userFunction = new UserFunctions();
+		
+		
+		//String [] postArtist = (String[]) artistsArray.toArray();
+		String[]postArtist=new String[artistsArray.size()];
+		for(int i=0;i<artistsArray.size();i++){
+			postArtist[i]=artistsArray.get(i);
 		}
 		
+		JSONObject json = userFunction.subscribeArtists(postArtist);
+
 		Toast.makeText(getApplicationContext(),
-				responseText, Toast.LENGTH_LONG).show();		 
+				responseText, Toast.LENGTH_LONG).show();	
+		// Check for request status message
+		try {
+			int success = json.getInt(TAG_SUCCESS);
+			Intent i = new Intent();
+			
+			if (success == 1) {
+				// query success
+				i.setClass(FollowActivity.this, MainActivity.class);
+				startActivity(i);
+				finish();
+			} else {
+				// failed query
+				Toast.makeText(FollowActivity.this, 
+						"Sorry an error occured during subscription", 
+						Toast.LENGTH_LONG);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			 
 	}
 
 	@Override
@@ -127,9 +166,14 @@ public class FollowActivity extends Activity {
 				
 				for(int i=0;i<artistsArray.length();i++) {
 					JSONObject artistArray = artistsArray.getJSONObject(i);
+					
+					int artist_id = Integer.parseInt(artistArray.getString("id"));
 					String artistName = artistArray.getString("name");
-					//String genre = artistArray.getString("genre");
-					Artists_Items artistsItems = new Artists_Items(artistName, false);
+					String genre = artistArray.getString("genre");
+					
+					Artists_Items artistsItems = new Artists_Items(artist_id, artistName, genre, false);
+					
+					
 					artistsList.add(artistsItems);
 					//artistsStrName[i] = artistName;
 				}
@@ -166,6 +210,7 @@ public class FollowActivity extends Activity {
 		
 		private class ViewHolder {
 			TextView textView;
+			TextView genreTextView;
 			CheckBox checkBox;
 		}
 		
@@ -173,7 +218,7 @@ public class FollowActivity extends Activity {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ViewHolder holder = null;
 			
-			Log.v("ConvertView", String.valueOf(position));
+			//Log.v("ConvertView", String.valueOf(position));
 				 
 			if (convertView == null) {
 				LayoutInflater vi = (LayoutInflater)getSystemService(
@@ -184,6 +229,8 @@ public class FollowActivity extends Activity {
 				holder = new ViewHolder();
 				holder.textView = (TextView) convertView.findViewById(R.id.rowTextView);
 				holder.checkBox = (CheckBox) convertView.findViewById(R.id.checkBox1);
+				holder.genreTextView = (TextView) convertView.findViewById(R.id.genreTextView);
+				
 				convertView.setTag(holder);
 				 
 				holder.checkBox.setOnClickListener( new View.OnClickListener() {
@@ -200,6 +247,7 @@ public class FollowActivity extends Activity {
 			
 			Artists_Items artistsItems = artistsList.get(position);
 			holder.textView.setText(artistsItems.getName());
+			holder.genreTextView.setText(artistsItems.getGenre());
 			holder.checkBox.setChecked(artistsItems.isChecked());
 			holder.checkBox.setTag(artistsItems);
 			

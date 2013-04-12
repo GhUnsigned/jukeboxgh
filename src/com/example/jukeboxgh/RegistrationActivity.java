@@ -9,12 +9,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RegistrationActivity extends Activity {
 
@@ -97,20 +99,20 @@ public class RegistrationActivity extends Activity {
 			UserFunctions userFunction = new UserFunctions();
 			// getting JSON object
 			JSONObject json = userFunction.registerUser(email, password, password2);
-			
-			// Check Log cat for response
-			Log.d("Create Response", json.toString());
-			
+						
 			// Check for success tag
 			try {
 				int success = json.getInt(TAG_SUCCESS);
+				Intent i = new Intent();
 				
 				if (success == 1) {
 					// successfully registered user
-					Log.e("Success","succs aa");
+					i.setClass(RegistrationActivity.this, SignInActivity.class);
 				} else {
 					// failed to register user
-					Log.e("falure", "asdfa");
+					Toast.makeText(RegistrationActivity.this, 
+							"Error in Registration", Toast.LENGTH_LONG).show();
+					//Log.e("failure", "asdfa");
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();

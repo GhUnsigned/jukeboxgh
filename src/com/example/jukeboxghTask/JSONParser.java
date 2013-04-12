@@ -93,6 +93,7 @@ public class JSONParser {
 			is.close();
 			//Log.i("Json: ", sb.toString());
 			json = sb.toString();
+			Log.i("JSON String", sb.toString());
 			
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block

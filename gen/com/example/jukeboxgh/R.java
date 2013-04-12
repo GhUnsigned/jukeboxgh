@@ -44,18 +44,19 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int thumb_transparent=0x7f020005;
     }
     public static final class id {
-        public static final int ButtonTestPlayPause=0x7f09001b;
+        public static final int ButtonTestPlayPause=0x7f09001c;
         public static final int RelativeLayout1=0x7f090004;
         public static final int RelativeLayout2=0x7f09000e;
-        public static final int SeekBarTestPlay=0x7f09001c;
-        public static final int action_logout=0x7f09001e;
-        public static final int action_settings=0x7f09001d;
+        public static final int SeekBarTestPlay=0x7f09001d;
+        public static final int action_logout=0x7f09001f;
+        public static final int action_settings=0x7f09001e;
         public static final int authButton=0x7f090006;
         public static final int bottom_control_bar=0x7f090001;
         public static final int bottomlayout=0x7f09000f;
         public static final int checkBox1=0x7f09001a;
         public static final int emaileditText=0x7f090010;
         public static final int errortextView=0x7f090015;
+        public static final int genreTextView=0x7f09001b;
         public static final int goToStream=0x7f09000b;
         public static final int imageView1=0x7f090005;
         public static final int logInbutton=0x7f090007;
