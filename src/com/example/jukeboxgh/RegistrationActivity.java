@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,7 +39,9 @@ public class RegistrationActivity extends Activity {
 		inputEmail = (EditText) findViewById(R.id.emaileditText);
 		inputPassword = (EditText) findViewById(R.id.passwordeditText);
 		inputPassword2 = (EditText) findViewById(R.id.password2editText);
-		
+		inputEmail.setTextColor(Color.WHITE);
+		inputPassword.setTextColor(Color.WHITE);
+		inputPassword2.setTextColor(Color.WHITE);
 		// Register Button
 		registerButton = (Button) findViewById(R.id.registerbutton);
 		

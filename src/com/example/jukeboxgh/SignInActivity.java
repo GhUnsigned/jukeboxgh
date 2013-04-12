@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,7 +39,8 @@ public class SignInActivity extends Activity {
 		
 		Email = (EditText) findViewById(R.id.emaileditText);
 		Password = (EditText) findViewById(R.id.passwordeditText);
-		
+		Email.setTextColor(Color.WHITE);
+		Password.setText(Color.WHITE);
 		signInButton = (Button) findViewById(R.id.signInbutton);
 		
 		signInButton.setOnClickListener(new View.OnClickListener() {
