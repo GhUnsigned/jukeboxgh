@@ -21,6 +21,7 @@ public class WelcomeOneActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				finish();
 				Intent i = new Intent(getApplicationContext(), FollowActivity.class);
 				
 				startActivity(i);

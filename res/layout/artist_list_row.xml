@@ -23,4 +23,13 @@
         android:layout_marginRight="6sp"
 		android:focusable="false" />
 
+    <TextView
+        android:id="@+id/genreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/checkBox1"
+        android:layout_alignBottom="@+id/checkBox1"
+        android:layout_toLeftOf="@+id/checkBox1"
+		android:textSize="8dp" />
+
 </RelativeLayout>

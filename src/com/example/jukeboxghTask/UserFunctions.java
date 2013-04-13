@@ -8,18 +8,23 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.util.Log;
 
 public class UserFunctions {
 	
 	private JSONParser jsonParser;
 	// Url to register user 10.0.2.2
-	private static String URL_REGISTER_USER= "http://192.168.1.66/social_music/and/register.php";
+	private static String URL_REGISTER_USER= "http://10.0.2.2/social_music/and/register.php";
 
 	// URL to login user
-	private static String URL_LOGIN_USER= "http://192.168.1.66/social_music/and/login.php";
+	private static String URL_LOGIN_USER= "http://10.0.2.2/social_music/and/login.php";
 	
 	// URL to get Artist
-	private static String URL_GET_ARTIST = "http://192.168.1.66/social_music/and/scripts/getAllArtists.php";
+	private static String URL_GET_ARTIST = "http://10.0.2.2/social_music/and/scripts/getAllArtists.php";
+	
+	// URL to subscribe user
+	private static String URL_SUBSCRIBE_ARTIST = "http://10.0.2.2/social_music/and/scripts/subscribe.php";
+	
 	public UserFunctions(){
 		jsonParser = new JSONParser();
 	}
@@ -59,6 +64,19 @@ public class UserFunctions {
 		// getting JSON object
 		JSONObject json = jsonParser.makeHttpRequest(URL_LOGIN_USER, "POST", params);
 		
+		return json;
+	}
+	
+	public JSONObject subscribeArtists(String [] artist_id){
+		// Building artist_id params
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		
+		for (int i = 0; i < artist_id.length; i++) {
+			params.add(new BasicNameValuePair("artist[]", artist_id[i]));
+		}
+		//params.add(new BasicNameValuePair("artist_id", artist_id));
+		
+		JSONObject json = jsonParser.makeHttpRequest(URL_SUBSCRIBE_ARTIST, "POST", params);
 		return json;
 	}
 	
