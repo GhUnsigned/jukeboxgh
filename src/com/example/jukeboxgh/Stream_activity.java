@@ -113,4 +113,6 @@ public class Stream_activity extends Activity implements OnClickListener, OnTouc
 		seekBarProgress.setSecondaryProgress(percent);
 		
 	}
+	
+	
 }
