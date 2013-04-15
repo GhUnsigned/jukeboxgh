@@ -23,12 +23,10 @@ Button go;
 
 		go=(Button) findViewById(R.id.goToStream);
 		go.setOnClickListener(this);
-		
 		TabSpec spec=tb.newTabSpec("tag1");
 		spec.setContent(R.id.tab1);
 		spec.setIndicator("Artist");
 		tb.addTab(spec);
-		
 		spec=tb.newTabSpec("tab2");
 		spec.setContent(R.id.tab2);
 		spec.setIndicator("Feed");
