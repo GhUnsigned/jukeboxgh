@@ -8,8 +8,8 @@ import android.content.Intent;
 
 public class SplashActivity extends Activity {
 	
-	// Time for splash display
-	protected int _splashTime = 5000;
+	// Time for splash display 5000
+	protected int _splashTime = 1000;
 	private Thread splashThread;
 	
     @Override

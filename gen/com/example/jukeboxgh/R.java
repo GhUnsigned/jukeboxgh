@@ -48,8 +48,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int RelativeLayout1=0x7f090004;
         public static final int RelativeLayout2=0x7f09000e;
         public static final int SeekBarTestPlay=0x7f09001d;
-        public static final int action_logout=0x7f09001f;
-        public static final int action_settings=0x7f09001e;
+        public static final int action_logout=0x7f090020;
+        public static final int action_settings=0x7f09001f;
+        public static final int artistNameTextView=0x7f09001e;
         public static final int authButton=0x7f090006;
         public static final int bottom_control_bar=0x7f090001;
         public static final int bottomlayout=0x7f09000f;
@@ -88,6 +89,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_welcome_one=0x7f030007;
         public static final int artist_list_row=0x7f030008;
         public static final int stream=0x7f030009;
+        public static final int subartist_list_item=0x7f03000a;
     }
     public static final class menu {
         public static final int follow=0x7f080000;

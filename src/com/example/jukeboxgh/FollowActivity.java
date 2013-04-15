@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import com.example.jukeboxghTask.Artists_Items;
 import com.example.jukeboxghTask.DatabaseHandler;
 import com.example.jukeboxghTask.UserFunctions;
+import com.example.jukeboxghadapters.SubscribeArtistAdapter;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -36,7 +37,7 @@ public class FollowActivity extends Activity {
 	ArrayList<Artists_Items> artistsList;
 	
 	private ProgressDialog pDialog;
-	private MyCustomAdapter dataAdapter = null;
+	private SubscribeArtistAdapter dataAdapter = null;
 	
 	private ListView artistListView;
 	String[] artist;
@@ -121,7 +122,7 @@ public class FollowActivity extends Activity {
 
 	private void bind(ArrayList<Artists_Items> artistsList){// accept Artist_listItems as params
 		//create an ArrayAdaptar from the String Array
-		dataAdapter = new MyCustomAdapter(this,	R.layout.artist_list_row, artistsList);
+		dataAdapter = new SubscribeArtistAdapter(this, artistsList);
 		
 		// Assign adapter to ListView
 		artistListView.setAdapter(dataAdapter);
@@ -194,65 +195,5 @@ public class FollowActivity extends Activity {
 			pDialog.dismiss();
 			bind(artistsList);
 		}
-	}
-	
-	private class MyCustomAdapter extends ArrayAdapter<Artists_Items>{
-		
-		private ArrayList<Artists_Items> artistsList;
-		public MyCustomAdapter(Context context, int textViewResourceId, 
-				ArrayList<Artists_Items> artistsList) {
-			super(context, textViewResourceId, artistsList);
-			this.artistsList = new ArrayList<Artists_Items>();
-			this.artistsList.addAll(artistsList);
-			
-			// TODO Auto-generated constructor stub
-		}
-		
-		private class ViewHolder {
-			TextView textView;
-			TextView genreTextView;
-			CheckBox checkBox;
-		}
-		
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			ViewHolder holder = null;
-			
-			//Log.v("ConvertView", String.valueOf(position));
-				 
-			if (convertView == null) {
-				LayoutInflater vi = (LayoutInflater)getSystemService(
-						Context.LAYOUT_INFLATER_SERVICE);
-				
-				convertView = vi.inflate(R.layout.artist_list_row, null);
-				
-				holder = new ViewHolder();
-				holder.textView = (TextView) convertView.findViewById(R.id.rowTextView);
-				holder.checkBox = (CheckBox) convertView.findViewById(R.id.checkBox1);
-				holder.genreTextView = (TextView) convertView.findViewById(R.id.genreTextView);
-				
-				convertView.setTag(holder);
-				 
-				holder.checkBox.setOnClickListener( new View.OnClickListener() {
-					public void onClick(View v) {
-						CheckBox cb = (CheckBox) v ;
-						Artists_Items artistsItems = (Artists_Items) cb.getTag();
-						artistsItems.setChecked(cb.isChecked());
-					}
-				}); 
-				
-			} else {
-				holder = (ViewHolder) convertView.getTag();
-			}
-			
-			Artists_Items artistsItems = artistsList.get(position);
-			holder.textView.setText(artistsItems.getName());
-			holder.genreTextView.setText(artistsItems.getGenre());
-			holder.checkBox.setChecked(artistsItems.isChecked());
-			holder.checkBox.setTag(artistsItems);
-			
-			return convertView;
-		}
-		
 	}
 }
