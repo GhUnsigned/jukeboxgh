@@ -21,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 
 public class Stream_activity extends Activity implements OnClickListener, OnTouchListener, OnCompletionListener, OnBufferingUpdateListener {
+	
 	private ImageButton buttonPlayPause;
 	private SeekBar seekBarProgress;
 	private MediaPlayer mediaPlayer;

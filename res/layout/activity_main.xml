@@ -25,31 +25,35 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent" >
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/tab1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
-                    
-                    <Button 
+
+                    <SeekBar
+                        android:id="@+id/SeekBarTestPlay1"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="Go to stream"
-                        android:id="@+id/goToStream"/>
-                </LinearLayout>
+                        android:thumb="@drawable/thumb_transparent" />
+
+                    <ListView
+                        android:id="@+id/lvMainArtist"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/SeekBarTestPlay1" >
+                    </ListView>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/tab2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
-                    
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/tab3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
-                    
-                    
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>
